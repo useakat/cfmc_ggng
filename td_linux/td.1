@@ -1,0 +1,62 @@
+.TH TD 1 "March 30, 1996"
+.UC 4
+.SH NAME
+td \- topdrawer plotting package (version 5.13)
+.SH SYNOPSIS
+.B td  
+.I file
+.SH DESCRIPTION
+.PP
+Topdrawer is a plotting package developed and used by high 
+energy physicists for the display of data.
+The
+.I td
+interpeter 
+executes commands in
+.I file
+to produce plots, with output to either the
+tektronix graphics device, or a postscript file.
+Although the command language is somewhat arcane, with
+a little patience, publication-quality output can be
+obtained.  Features of topdrawer include:
+(1) linear or logarithmic scales on plots,
+(2) Greek letters and other mathematical symbols for plot labels,
+(3) command to rescale the input data,
+(4) color postscript output,
+(5) option to plot individual points, error bars, smooth curves, 
+histograms, contour plots, scatter plots, and
+lego plots.  For further details, see the topdrawer on-line
+documentation file.
+.br
+.SH FILES
+.PP
+.TP
+/usr/doc/topdrawer/topdrawer.doc 
+.br
+Plain text documentation describing the topdrawer command set.
+.TP
+/usr/doc/topdrawer/examples/*.top
+.br
+Sample topdrawer files. 
+.br
+.SH BUGS
+.PP
+Probably many.  Topdrawer began life on a VMS system
+at the Stanford Linear Accelerator, and was
+written in very ugly, non-standard FORTRAN.  
+Porting to some flavors of Unix (but not Linux) was done at Fermilab.
+Considerable hacking
+was required to get the postscript and tektronix devices to
+work at all under Linux.  
+.PP
+When diplaying in the tektronix window, there is often random garbage
+between plots.
+.PP
+Postscript files are much longer than they need to be.
+.PP
+Any file named 
+.I td.time
+in the working directory could be overwritten when
+.I
+td
+is run.

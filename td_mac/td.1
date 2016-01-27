@@ -1,0 +1,73 @@
+.TH TD 1 "March 30, 1996"
+.UC 4
+.SH NAME
+td \- topdrawer plotting package (version 5.13)
+.SH SYNOPSIS
+.B td  
+.I file
+.SH DESCRIPTION
+.PP
+Topdrawer is a plotting package developed by Roger B. Chaffee
+at the Stanford Linear Accelerator for the display of high
+energy physics data.
+The
+.I td
+interpeter 
+executes commands in
+.I file
+to produce plots, with output to either the
+tektronix graphics device, or a postscript file.
+Although the command language is somewhat arcane, with
+a little patience, publication-quality output can be
+obtained.  Features of topdrawer include:
+(1) linear or logarithmic scales on plots,
+(2) Greek letters and other mathematical symbols for plot labels,
+(3) command to rescale the input data,
+(4) color postscript output,
+(5) option to plot individual points, error bars, smooth curves, 
+histograms, contour plots, scatter plots, and
+lego plots.  For further details, see the topdrawer on-line
+documentation file.
+.br
+.SH FILES
+.PP
+.TP
+/usr/doc/topdrawer/topdrawer.doc 
+.br
+Plain text documentation describing the topdrawer command set.
+.TP
+/usr/doc/topdrawer/examples/*.top
+.br
+Sample topdrawer files. 
+.br
+.SH BUGS
+.PP
+Probably many.  Topdrawer  was originally developed by Roger
+B. Chaffee at the Stanford Linear Accelerator on a VMS system.
+The program grew as users supplied various suggestions for
+additional features.
+Porting to some flavors of Unix (but not Linux) was done at Fermilab
+by Arthur Kreymer.
+The considerable hacking required to get the postscript and
+tektronix devices working under Linux was done by Greg Mahlon.
+.PP
+You must specify your choice of driver by including one of the
+following statements at the top of the input file:
+.TP
+SET DEVICE TEKTRONIX
+.TP 
+SET DEVICE POSTSCRIPT
+.TP
+SET DEVICE POSTSCRIPT PORTRAIT
+.PP
+Otherwise, topdrawer will default to the (non-existent) X-windows
+driver and abort with an error message.
+.PP
+Postscript files are much longer than they need to be.
+.PP
+Any file named 
+.I td.time
+in the working directory could be overwritten when
+.I
+td
+is run.

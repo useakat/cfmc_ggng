@@ -1,0 +1,26 @@
+#!/bin/sh -f
+    
+if [ $# -ge 1 ]    
+ then
+  tag="$1"  
+else
+  tag="test"
+fi    
+
+ich=$2
+idiv=$3
+seed=$4
+mode=$5
+events=$6
+#./spring $ich $seed $mode $events <<END_OF_DATA >/dev/null 2>&1
+./spring $ich $seed $mode $events <<END_OF_DATA 1> rslt_${tag}/log_spring_${ich} 2>&1
+C*************************************************
+C Input section for Spring part.
+C*************************************************
+  HSTF rslt_${tag}/${ich}.tdr
+  OUTF rslt_${tag}/${ich}.bases
+  EVTF rslt_${tag}/${ich}.lhe
+  NVSP  ${events}
+C*************************************************
+END
+END_OF_DATA

@@ -1,0 +1,63 @@
+ ordering function for particles in classes: pt 
+ histograms normalized according to cross section
+ Final states contain 7 different particles.
+particle #  1:   mET1   fits in class # 0
+particle #  2:   jet1   fits in class # 1
+particle #  3:   jet2   fits in class # 1
+particle #  4:     b1   fits in class # 2
+particle #  5:     b2   fits in class # 2
+particle #  6:   mu+1   fits in class # 3
+particle #  7:    e+1   fits in class # 4
+ 
+ plots set up:
+ Weights             
+ # jet               
+ # b                 
+ # mu+               
+ # e+                
+ Ht                  
+ Missing ET          
+ pt(jet1)            
+ pt(jet2)            
+ pt(b1)              
+ pt(b2)              
+ pt(mu+1)            
+ pt(e+1)             
+ y(jet1)             
+ y(jet2)             
+ y(b1)               
+ y(b2)               
+ y(mu+1)             
+ y(e+1)              
+ R(jet1,jet2)        
+ R(jet1,b1)          
+ R(jet1,b2)          
+ R(jet2,b1)          
+ R(jet2,b2)          
+ R(jet1,mu+1)        
+ R(jet2,mu+1)        
+ R(jet1,e+1)         
+ R(jet2,e+1)         
+ R(b1,b2)            
+ R(b1,mu+1)          
+ R(b2,mu+1)          
+ R(b1,e+1)           
+ R(b2,e+1)           
+ R(mu+1,e+1)         
+ m(jet1,jet2)        
+ m(jet1,b1)          
+ m(jet1,b2)          
+ m(jet2,b1)          
+ m(jet2,b2)          
+ m(jet1,mu+1)        
+ m(jet2,mu+1)        
+ m(jet1,e+1)         
+ m(jet2,e+1)         
+ m(b1,b2)            
+ m(b1,mu+1)          
+ m(b2,mu+1)          
+ m(b1,e+1)           
+ m(b2,e+1)           
+ m(mu+1,e+1)         
+  
+ applied cuts:

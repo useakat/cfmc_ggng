@@ -1,0 +1,15 @@
+gfortran   = gfortran
+FFLAGS= -O -ffixed-line-length-132
+LIBDIR = ../../lib/
+PROG   = check
+LINKLIBS =  -L../../lib/ -ldhelas3 -lmodel 
+LIBS = $(LIBDIR)libdhelas3.a $(LIBDIR)libmodel.a $(HELAS) 
+PROCESS=  check_sa.o matrix.o ggggcf.o GLUON4_0.o GLUON4_1.o GLUON4_4.o GLUON5_0.o GLUON5_1.o GLUON5_5.o GLUON6_0.o GLUON6_1.o GLUON6_6.o GLUON7_0.o GLUON7_1.o GLUON7_7.o GLUON8_0.o GLUON8_8.o GLUON9_0.o GLUON10_0.o jgggcf.o sumw.o VVV1_0.o VVV1_2.o
+ 
+%.o : %.f
+	$(gfortran) $(FFLAGS) -c $<
+
+$(PROG): $(PROCESS)  makefile $(LIBS)
+	$(gfortran) $(FFLAGS) -o $(PROG) $(PROCESS) $(LINKLIBS)
+
+driver.f: nexternal.inc pmass.inc ngraphs.inc coupl.inc

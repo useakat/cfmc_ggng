@@ -1,0 +1,90 @@
+------------------------
+HOW TO INSTALL THIS PACKAGE
+------------------------
+modify maplot.sh
+   LINE 12: set topdrawer for linux or mac
+ 
+./makelibs.sh
+
+------------------------
+HOW TO USE
+------------------------
+
+00. generate process
+
+    ./gen_files.sh [ngluons]
+    
+    This command generates needed files for gg > (ngluons -2) event generation
+
+0. modify 
+   cparam.inc
+	icf: Color Summation mode
+	ich_type: channel types to be used
+	nch: the number of integration channels
+	nwgt: the number of jacobians which covers some singularities in the matrix element
+	ipdf: whether use pdf(1) or not(0)
+	ndist: the number of distributions bases plots
+
+   userin.f (setting file for the main program)
+	EBMUP: the energy of the beam 1 & 2
+	PTcut: the pTcut for jets
+	AYEcut: the rapidity cut for jets
+	rcut: the dR cut between jets
+	lptcut: the pTcut for the leading jets (in pT)
+	ipdfset: the id number for the pdf set used (LesHouchAccord)
+	QQ: the factorization scale
+	alfas: the alpha_s coupling
+	Qcut: the minimum invariant mass of the s-channel off-shell particle
+	Qmax: the maximum invariant mass of the s-channel off-shell particle
+	nsample_cf: the number of color flows to be sampled per phase space point
+	
+  	Please also modify the histogram setting at the bottom of the file according to the bases rule. (the number of distributions is fixed by ndist in cparam.inc
+
+   run_bases (setting file for BASES)
+	ACC1: the required accuracy for the grid optimization
+	ACC2: the required accuracy for the integration
+	ITM1: the maximum number of iteration for the grid optimization
+	ITM2: the maximum number of iteration for the integration
+
+   bfunc.f: clculation of the integrand for the phase space integration
+	modify it for the process to be generated 
+	1. gench_pshk*
+	2. impose_cuts
+	3. get_chjacob_diagram
+	4. smatrix
+	5. switch_mom part
+	6. order_pt
+
+1. running
+   ./run.sh
+   
+   This will run following commands:
+	./get_numch: read the number of channels
+	./run_bases: phase space integration
+	./get_nevent:    
+	./makedat_bases.sh
+	./combine_dat
+	./mkgnu_z.sh
+	./mkgnu_bases.sh
+	./run_spring: event generation
+	./combine_plot.sh
+	./combine_uwgteff.sh
+	./mkgnu_wgtunwgt.sh
+
+   Verify your result
+       1. Check that your integration reaches the desired accuracy before go to event generation step by checking rslt_[run_name]/output/log_bases_[run_name]_[ch_number]. If the integration acuracy is not enough even after 5 iterations, it would be better to increase NCAL, not increasing ITM1.
+
+       2. Check that your event generation does not miss generation (1 or 2 miss would be fine) by checking "miss_gen" in  rslt_[run_name]/output/summary.txt. If this happen, it implys that the integration step did not find all the peak in the integrand sufficiently. Take mxtry larger or decrease ACC or increase NCAL.
+
+       3. Check the distributions reported. 
+       	  plot_distc.eps: The unweighted distributions should agree with the weighted one (or a little bit smaller. should not be larger). If this happens, consider to increase NCAL or decrease ACC's. 
+
+	  plot_intvar_[ch_number]: The distributions for integration variable should not show any narrow peak more than 2 order than the average. If this happens, change the channeling, jacobian or integration variables. 
+
+2. plotting by yourself
+   After generating events, do following.
+   	 maplot.sh [run_name]
+	 ./makedat.sh [run_name]
+	 ./mkgnu.sh [run_name1] [run_name2] ...
+
+   The plots are outputted in "pots" folder
